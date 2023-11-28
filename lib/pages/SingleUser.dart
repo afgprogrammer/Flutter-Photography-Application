@@ -7,9 +7,9 @@ import 'package:flutter_photography/models/Collocation.dart';
 import 'package:flutter_photography/models/User.dart';
 
 class SingleUser extends StatefulWidget {
-  final User user;
+  final User? user;
 
-  const SingleUser({Key key, this.user}) : super(key: key);
+  const SingleUser({Key? key, this.user}) : super(key: key);
   
   @override
   _SingleUserState createState() => _SingleUserState();
@@ -31,6 +31,7 @@ class _SingleUserState extends State<SingleUser> {
         ),
         actions: <Widget>[
           IconButton(
+            onPressed: () {},
             icon: Icon(Icons.more_horiz, size: 25, color: Colorsys.grey,),
           )
         ],
@@ -48,20 +49,20 @@ class _SingleUserState extends State<SingleUser> {
                 children: <Widget>[
                   Hero(
                     transitionOnUserGestures: true,
-                    tag: widget.user.username,
+                    tag: widget.user!.username,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage(widget.user.profilePicture),
+                      backgroundImage: AssetImage(widget.user!.profilePicture),
                       maxRadius: 40,
                     ),
                   ),
                   SizedBox(height: 20,),
-                  Text(widget.user.name, style: TextStyle(
+                  Text(widget.user!.name, style: TextStyle(
                     fontSize: 20,
                     color: Colorsys.black,
                     fontWeight: FontWeight.bold
                   ),),
                   SizedBox(height: 5,),
-                  Text(widget.user.username, style: TextStyle(
+                  Text(widget.user!.username, style: TextStyle(
                     fontSize: 15,
                     color: Colorsys.grey
                   ),),
@@ -70,7 +71,7 @@ class _SingleUserState extends State<SingleUser> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       makeFollowWidgets(
-                        count: widget.user.followers,
+                        count: widget.user!.followers,
                         name: "Followers"
                       ),
                       Container(
@@ -80,7 +81,7 @@ class _SingleUserState extends State<SingleUser> {
                         color: Colorsys.lightGrey,
                       ),
                       makeFollowWidgets(
-                        count: widget.user.following,
+                        count: widget.user!.following,
                         name: "Following"
                       ),
                     ],
@@ -133,7 +134,7 @@ class _SingleUserState extends State<SingleUser> {
                       ],
                     ),
                   ),
-                  makeColloction(widget.user.collocation)
+                  makeColloction(widget.user!.collocation)
                 ],
               ),
             ),
@@ -272,7 +273,7 @@ class _SingleUserState extends State<SingleUser> {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.grey[300],
+              color: Colors.grey.shade300,
               blurRadius: 20,
               offset: Offset(0, 10)
             )

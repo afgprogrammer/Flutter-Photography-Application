@@ -1,15 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_photography/data/Sample.dart';
 import 'package:flutter_photography/helper/Colorsys.dart';
 import 'package:flutter_photography/models/Post.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class SinglePost extends StatelessWidget {
-  final Post post;
-  final String image;
+  final Post? post;
+  final String? image;
 
-  const SinglePost({Key key, this.post, this.image}) : super(key: key);
+  const SinglePost({Key? key, this.post, this.image}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class SinglePost extends StatelessWidget {
                 ),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage(image)
+                  image: AssetImage(image!)
                 )
               ),
               child: Column(
@@ -65,10 +64,10 @@ class SinglePost extends StatelessWidget {
                         children: <Widget>[
                           CircleAvatar(
                             maxRadius: 25,
-                            backgroundImage: AssetImage(post.user.profilePicture),
+                            backgroundImage: AssetImage(post!.user!.profilePicture),
                           ),
                           SizedBox(width: 10,),
-                          Text(post.user.name, style: TextStyle(
+                          Text(post!.user!.name, style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w600
                           ),)
@@ -83,7 +82,7 @@ class SinglePost extends StatelessWidget {
                             padding: EdgeInsets.all(7),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
-                              color: Colors.grey[600].withOpacity(0.1)
+                              color: Colors.grey.shade600.withOpacity(0.1)
                             ),
                             child: Center(
                               child: Image.asset('assets/icons/download.png')
@@ -111,7 +110,7 @@ class SinglePost extends StatelessWidget {
                       ),)
                     ],
                   ),
-                  makeRelatedPhotos(post)
+                  makeRelatedPhotos(post!)
                 ],
               ),
             )
@@ -122,9 +121,9 @@ class SinglePost extends StatelessWidget {
   }
 
   Widget makeRelatedPhotos(Post post) {
-    return StaggeredGridView.countBuilder(
+    return MasonryGridView.count(
       crossAxisCount: 4,
-      itemCount: post.relatedPhotos.length,
+      itemCount: post.relatedPhotos!.length,
       mainAxisSpacing: 10.0,
       crossAxisSpacing: 10.0,
       physics: NeverScrollableScrollPhysics(),
@@ -134,12 +133,12 @@ class SinglePost extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage(post.relatedPhotos[index])
+            image: AssetImage(post.relatedPhotos![index])
           ),
           color: Colors.green
         ),
       ),
-      staggeredTileBuilder: (int index) => StaggeredTile.count(2, index.isEven ? 3 : 2),
+      // staggeredTileBuilder: (int index) => StaggeredTile.count(2, index.isEven ? 3 : 2),
     );
   }
 }

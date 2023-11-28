@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         backgroundColor: Colorsys.lightGrey,
         leading: IconButton(
+          onPressed: () {},
           icon: Icon(Icons.menu, color: Colorsys.darkGray,),
         ),
       ),
@@ -121,10 +122,10 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 Hero(
                   transitionOnUserGestures: true,
-                  tag: post.user.username,
+                  tag: post.user!.username,
                   child: CircleAvatar(
                     maxRadius: 28,
-                    backgroundImage: AssetImage(post.user.profilePicture),
+                    backgroundImage: AssetImage(post.user!.profilePicture),
                   ),
                 ),
                 SizedBox(width: 20,),
@@ -132,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(post.user.name, style: TextStyle(
+                      Text(post.user!.name, style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700
                       ),),
@@ -199,7 +200,7 @@ class _HomePageState extends State<HomePage> {
                                         padding: EdgeInsets.all(5),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(4),
-                                          color: Colors.grey[600].withOpacity(0.1)
+                                          color: Colors.grey.shade600.withOpacity(0.1)
                                         ),
                                         child: Center(
                                           child: Image.asset('assets/icons/link.png')
@@ -217,7 +218,7 @@ class _HomePageState extends State<HomePage> {
                                         padding: EdgeInsets.all(5),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(4),
-                                          color: Colors.grey[600].withOpacity(0.1)
+                                          color: Colors.grey.shade600.withOpacity(0.1)
                                         ),
                                         child: Center(
                                           child: Image.asset('assets/icons/heart.png')

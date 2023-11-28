@@ -8,6 +8,6 @@ class User {
   final int following;
   final List<Collocation> collocation;
 
-  User({this.name, this.profilePicture, this.username, this.followers, this.following, this.collocation});
+  User({required this.name, required this.profilePicture, required this.username, required this.followers, required this.following, required this.collocation});
 
 }
